@@ -1,8 +1,10 @@
 package com.taro.backend.controller;
 
 
+import com.taro.backend.dto.TarotCardDTO;
 import com.taro.backend.entity.TarotCard;
 import com.taro.backend.repository.TarotCardRepository;
+import com.taro.backend.service.TarotService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,25 +15,19 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tarot")
-@CrossOrigin(origins = "http://localhost:4200") // ან "*" მხოლოდ DEV-ში
+@CrossOrigin(origins = "http://localhost:4200")
 public class TarotController {
-    private final TarotCardRepository repo;
-    public TarotController(TarotCardRepository repo) { this.repo = repo; }
 
-    @GetMapping
-    public List<TarotCard> all() { return repo.findAll(); }
+    private final TarotService service;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TarotCard> get(@PathVariable Long id) {
-        return repo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public TarotController(TarotService service){
+        this.service = service;
     }
 
-    @PostMapping("/draw")
-    public ResponseEntity<Map<String,Object>> draw(@RequestBody Map<String,Object> body) {
-        // აქ ლოგიკა გაშლისა — ან უბრალოდ დააბრუნე მაგალითად 3 შემთხვევითი ბარათი
-        List<TarotCard> all = repo.findAll();
-        Collections.shuffle(all);
-        List<TarotCard> pick = all.stream().limit(3).collect(Collectors.toList());
-        return ResponseEntity.ok(Map.of("cards", pick));
+    @GetMapping("/draw")
+    public List<TarotCardDTO> draw(@RequestParam(defaultValue = "3") int count) {
+        return service.drawCards(count);
     }
+
+
 }

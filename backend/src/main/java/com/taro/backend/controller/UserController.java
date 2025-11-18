@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/tarot")
 @CrossOrigin(origins = "http://localhost:4200") // Angular frontend URL
 public class UserController {
 

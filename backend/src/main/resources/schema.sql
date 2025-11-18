@@ -1,0 +1,14 @@
+
+
+CREATE TABLE majors(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR UNIQUE,
+    meaning VARCHAR NOT NULL
+);
+
+CREATE TABLE minors (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR UNIQUE,
+    meaning VARCHAR NOT NULL,
+    suit VARCHAR NOT NULL
+);
