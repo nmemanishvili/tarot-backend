@@ -12,6 +12,7 @@ public class TarotCard {
     private String name;
     private String meaning;
     private String image_Url;
+    private int more_card;
 
     public String getName() {
         return name;
@@ -34,6 +35,14 @@ public class TarotCard {
         this.id = id;
     }
 
-    public String getimage_Url() { return image_Url; }
-    public void setimage_Url(String url) {this.image_Url = url; }
+    public String getImage_Url() { return image_Url; }
+    public void setImage_Url(String image_Url) {this.image_Url = image_Url; }
+
+    public int getMore_card() {
+        return more_card;
+    }
+
+    public void setMore_card(int more_card) {
+        this.more_card = more_card;
+    }
 }

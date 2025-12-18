@@ -3,6 +3,8 @@ import com.taro.backend.entity.TarotCard;
 import com.taro.backend.repository.TarotCardRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class TarotService {
@@ -15,5 +17,9 @@ public class TarotService {
 
     public TarotCard getRandomCard() {
         return repo.findRandomCard();
+    }
+
+    public List<TarotCard> getRandomTen() {
+        return repo.findRandomTen();
     }
 }
